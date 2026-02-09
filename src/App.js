@@ -8,11 +8,18 @@ export default function Board() {
   
   const [squares, setSquares] = useState(Array(9).fill(null));
   
+  const [xIsNext, setXIsNext] = useState(true)
+
   function handleClick(i) {
+    if(nextSquares[i]){
+      return;
+    }
     const nextSquares = squares.slice()
-    nextSquares[i] = 'X'
-    setSquares(nextSquares);
+    nextSquares[i] = xIsNext ? 'X' : 'O'
+    setSquares(nextSquares)
+    setXIsNext(!xIsNext)
   }
+
   return (
     <>
       <div className="board-row">
